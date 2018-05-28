@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:App3.Converters"
+             x:Class="App3.WeatherPage">
+    <ContentPage.Resources>
+        
+        <ResourceDictionary>
+            <converters:SunConverter x:Key="SunConverter"/>
+            <converters:SunConverter x:Key="IconConverter"/>            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add.png" Clicked="BtnAddClicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                    <ColumnDefinition  Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!-- <Button Text="Géo" Clicked="ButtonGeoClicked" Grid.Column="0" x:Name="BtnGeo"/>-->
+                <Entry  x:Name="myEntry" Placeholder="Votre ville"  Grid.Column="1"/>
+                <Button x:Name="getWeatherBtn" Text="Météo" Clicked="GetWeatherBtn_Clicked" Grid.Column="2"/>
+            </Grid>
+
+            <Image WidthRequest="200" HeightRequest="200" Source="{Binding Icon, Converter={StaticResource IconConverter}}" />
+            <Label x:Name="LabelCity" Text="{Binding City}" />
+
+                <!--<StackLayout>
+                <Entry  x:Name="myEntry" Placeholder="Votre ville" />
+                <Button x:Name="getWeatherBtn" Text="Météo" Clicked="GetWeatherBtn_Clicked"/>
+            </StackLayout>-->
+           <StackLayout Orientation="Horizontal">
+                <Label Text="Ville: "/>
+                <Label x:Name="City" Text="{Binding City}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Température: "/>
+                <Label x:Name="Temperature" Text="{Binding Temperature}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Soleil: "/>
+                <!--   <Label Text="{Binding, Converter={StaticResource SunConverter}}"/>-->
+            </StackLayout>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
